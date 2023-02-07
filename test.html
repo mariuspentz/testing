@@ -18,7 +18,9 @@ set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
+set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
+
 ]%%
 
 <script runat="server">
@@ -41,5 +43,6 @@ set @regCountry=RequestParameter("RegCountry")
 <body>
 
 %%=v(@ContactId)=%% <br>
+%%=v(@regCountry)=%%
 </body>
 </html>
