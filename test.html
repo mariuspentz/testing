@@ -31,7 +31,7 @@ set @result=UpdateSingleSalesforceObject(
                                                    "NewsletterSubscriber__c",@newslettersubscriber,
                                                    "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
                                                    "NewsletterUnsubscribeDate__c",@todaydate,
-                                                   "LoyaltyNewsletterUnsubscribeDate",@todaydate 
+                                                   /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
                                                  )
         set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
         set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
