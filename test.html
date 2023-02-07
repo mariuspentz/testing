@@ -56,12 +56,6 @@ IF RowCount(@subscriberRows) > 0 THEN
   SET @LoyaltyNewsletterSubscriptionDate = field(@regrow,"LoyaltyNewsletterSubscriptionDate__c") 
   SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
   
-  SET @NewsletterEnrolmentChannel = field(@regrow,"NewsletterEnrolmentChannel__c") 
-  SET @LoyaltyEnrolmentChannel = field(@regrow,"LoyaltyEnrolmentChannel__c") 
-  
-  set @sfdcNLDoubleOptIn=field(@regrow,"NLDoubleOptIn__c") 
-  set @sfdcLNLDoubleOptIn=field(@regrow,"LoyaltyNLDoubleOptIn__c") 
-  
   SET @lang=field(@regrow,"PreferredLanguage__c")
 
  /* set @result=UpdateSingleSalesforceObject(
@@ -137,24 +131,7 @@ RegCountry: %%=v(@regCountry)=%%<br>
   <title>Document</title>
 </head>
 <body>
-  %%=v(@newslettersubscriber)=%% <br>
-%%=v(@loyaltynewslettersubscriber)=%% <br>
-%%=v(@regid)=%% <br>
 
-%%=v(@NewsletterUnsubscribeDate)=%% <br>
-%%=v(@LoyaltyNewsletterUnsubscribeDate)=%% <br>
-
-%%=v(@formatdate)=%% <br>
-%%=v(@todaydate)=%% <br>
-
-%%=v(@newslettersubscriber)=%% <br>
-%%=v(@loyaltynewslettersubscriber)=%% <br>
-
-%%=v(@transHeader1)=%% <br>
-%%=v(@transEmail)=%% <br>
-%%=v(@transHeader2)=%% <br>
-%%=v(@transThankyou)=%% <br>
-%%=v(@transErrorMsg)=%% <br>
 %%=v(@ContactId)=%% <br>
 </body>
 </html>
