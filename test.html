@@ -18,6 +18,16 @@ set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
+/* set @result=UpdateSingleSalesforceObject(
+    "Registration__c",@regid,
+    "NewsletterSubscriber__c",@newslettersubscriber,
+    "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
+    "NewsletterUnsubscribeDate__c",@todaydate,
+    //"LoyaltyNewsletterUnsubscribeDate",@todaydate
+  )
+set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+ */
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
@@ -68,6 +78,8 @@ IF RowCount(@subscriberRows) > 0 THEN
   ENDIF 
  ENDIF 
  */  --> 
+ 
+ ENDIF]%%
  %%[
 var @rows,@rowCount,@i,@row
 
