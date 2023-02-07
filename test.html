@@ -48,6 +48,18 @@ IF RowCount(@subscriberRows) > 0 THEN
   SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
   
   SET @lang=field(@regrow,"PreferredLanguage__c")
+
+  set @result=UpdateSingleSalesforceObject(
+  "Registration__c",@regid,
+  "NewsletterSubscriber__c",@newslettersubscriber,
+  "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
+  "NewsletterUnsubscribeDate__c",@todaydate,
+  /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
+)
+//set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+//set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+
+
   ENDIF
   ENDIF
 
