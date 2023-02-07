@@ -37,7 +37,7 @@ set @result=UpdateSingleSalesforceObject(
         set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
 
         ]%%
- /*       ELSE
+<!--/*       ELSE
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
@@ -87,7 +87,7 @@ IF RowCount(@subscriberRows) > 0 THEN
  /*       ENDIF
   ENDIF 
  ENDIF 
- */
+ */  --> 
  %%[
 var @rows,@rowCount,@i,@row
 
