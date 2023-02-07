@@ -44,10 +44,7 @@
    SET @AccountId=field(@row,"AccountId")
   
    SET @regRows=RetrieveSalesforceObjects("Registration__c",
-                                       "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,
-                                        NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,
-                                        LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,
-                                        NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
+                                       "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
                                         "Account__c", "=", @AccountId,"RegistrationCountry__c","=",@regCountry,"Brand__c","=","Triumph")
     
     IF RowCount(@regRows) > 0 THEN
@@ -121,6 +118,7 @@
           
           Variable.SetValue("@Error_desc","true");
           Variable.SetValue("@Error_desc_detail",Stringify(e.message)+Stringify(e.description));
+          Write(Stringify(e));
         }
  </script>
  
