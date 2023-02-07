@@ -32,7 +32,7 @@ set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fields
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
+/* SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
 IF RowCount(@subscriberRows) > 0 THEN
  SET @row = row(@subscriberRows,1)
@@ -72,40 +72,9 @@ IF RowCount(@subscriberRows) > 0 THEN
   ENDIF 
  ENDIF 
  */  --> 
- 
+ /*
  ENDIF]%%
- %%[
-var @rows,@rowCount,@i,@row
 
-set @lang = "de_de"
-
-set @rows = LookupRows("Translation_Page_Triumph","Language", @lang)
-
-var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID,@transDateOfBirth,@transUnsubscribeReason,@transHeader2,@transOption1,@transOption2,@transOption3,@transHeader3,@transOption10,@transOption10,@transHeader3,@transSubmit,@transThankyou,@transErrorMsg
-   set @rowCount = rowcount(@rows)
- if @rowCount > 0 then
-   for @i = 1 to @rowCount do
-   
-   set @row = row(@rows, @i) /* get row based on counter */
-   set @transHeader1 = field(@row,"Header1")
-   set @transEmail = field(@row,"Email")
-   set @transHeader2 = field(@row,"Header2")
-   set @transOption1 = field(@row,"Option1")
-   set @transOption2 = field(@row,"Option2")
-   set @transSubmit = field(@row,"Submit") 
-   set @transThankyou = field(@row,"Thankyou")
-   set @transErrorMsg = field(@row,"ErrorMsg")
-   set @transOption11 = field(@row,"Option11")
-   set @transReason1 = field(@row,"Reason1")
-   set @transReason2 = field(@row,"Reason2")
-   set @transReason3 = field(@row,"Reason3")
-   set @transReason4 = field(@row,"Reason4")
-   
-next @i
-
-endif 
-
-]%%
 /*
 %%[if RequestParameter("debug") == "true" then]%%
 ContactID: %%=v(@ContactId)=%%<br>
