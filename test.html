@@ -20,7 +20,7 @@
   
   IF NOT EMPTY (@regId) THEN         
   
-  set @result=UpdateSingleSalesforceObject(
+  /*set @result=UpdateSingleSalesforceObject(
                                                      "Registration__c",@regid,
                                                      "NewsletterSubscriber__c",@newslettersubscriber,
                                                      "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
@@ -29,7 +29,8 @@
                                                    )
           //set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
           // LOYALTYNEWSLETTERSUBSCRIPTIONDATE AUCH NULLEN???
-  ELSE
+  */
+          ELSE
   // IF REGID == EMPTY -> RETRIEVESFOBJECT
   set @ContactId=RequestParameter("Contact")
   set @regCountry=RequestParameter("RegCountry")
@@ -66,7 +67,7 @@
     
     SET @lang=field(@regrow,"PreferredLanguage__c")
 
-    set @result=UpdateSingleSalesforceObject(
+   /* set @result=UpdateSingleSalesforceObject(
                                                      "Registration__c",@registrationId,
                                                      "NewsletterSubscriber__c",@newslettersubscriber,
                                                      "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
@@ -75,7 +76,8 @@
                                                    )
           //set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
           // LOYALTYNEWSLETTERSUBSCRIPTIONDATE AUCH NULLEN???
-    ENDIF
+    */
+          ENDIF
     ENDIF 
     
  var @rows,@rowCount,@i,@row
@@ -121,5 +123,3 @@
           Write(Stringify(e));
         }
  </script>
- 
- 
