@@ -15,17 +15,15 @@ set @LoyaltyNewsletterUnsubscribeDate=RequestParameter("LoyaltyNewsletterUnsubsc
 set @formatdate=DateAdd(Now(), 6, "H")
 set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 
+
+IF NOT EMPTY (@regId) THEN         
+
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
-
-
-/*
-IF NOT EMPTY (@regId) THEN         
-
 //LOOKUP - Synched DE Registrations und Pref Lang holen
-set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
-*/
+//set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
+
 set @result=UpdateSingleSalesforceObject(
                                                    "Registration__c",@regid,
                                                    "NewsletterSubscriber__c",@newslettersubscriber,
@@ -36,7 +34,8 @@ set @result=UpdateSingleSalesforceObject(
         set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
         set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
 
-        ]%%
+  
+     ENDIF   ]%%
  /*       ELSE
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
