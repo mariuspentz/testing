@@ -18,26 +18,6 @@ set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
-/*
-IF NOT EMPTY (@regId) THEN         
-
-//LOOKUP - Synched DE Registrations und Pref Lang holen
-set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
-*/
-
-
-set @result=UpdateSingleSalesforceObject(
-                                                   "Registration__c",@regid,
-                                                   "NewsletterSubscriber__c",@newslettersubscriber,
-                                                   "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
-                                                   "NewsletterUnsubscribeDate__c",@todaydate,
-                                                   /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
-                                                 )
-        set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-        set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
-
-        ]%%
-<!--/*       ELSE
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
@@ -163,5 +143,6 @@ RegCountry: %%=v(@regCountry)=%%<br>
 %%=v(@transHeader2)=%% <br>
 %%=v(@transThankyou)=%% <br>
 %%=v(@transErrorMsg)=%% <br>
+%%=v(@ContactId)=%% <br>
 </body>
 </html>
