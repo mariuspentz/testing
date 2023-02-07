@@ -26,8 +26,8 @@ set @loyaltynewslettersubscriber = "false"
 
 set @result=UpdateSingleSalesforceObject(
                                                    "Registration__c",@regid,
-                                                   "NewsletterSubscriber__c",@newslettersubscriber,
-                                                   "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
+                                                   "NewsletterSubscriber__c","false",
+                                                   "LoyaltyNewsletterSubscriber__c","false",
                                                    "NewsletterUnsubscribeDate__c",@todaydate
                                                    /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
                                                  )
