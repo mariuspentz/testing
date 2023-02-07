@@ -21,6 +21,8 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
+IF EMPTY (@regId) THEN
+
 SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
 IF RowCount(@subscriberRows) > 0 THEN
@@ -48,6 +50,21 @@ IF RowCount(@subscriberRows) > 0 THEN
   SET @lang=field(@regrow,"PreferredLanguage__c")
   ENDIF
   ENDIF
+
+  ELSE
+
+
+set @result=UpdateSingleSalesforceObject(
+  "Registration__c",@regid,
+  "NewsletterSubscriber__c",@newslettersubscriber,
+  "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
+  "NewsletterUnsubscribeDate__c",@todaydate,
+  /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
+)
+//set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+//set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+
+
 ]%%
 <script runat="server">
       } catch(e) { 
