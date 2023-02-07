@@ -24,7 +24,6 @@ IF NOT EMPTY (@regId) THEN
 //LOOKUP - Synched DE Registrations und Pref Lang holen
 set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
 */
-set @lang = "de_DE"
 
 
 set @result=UpdateSingleSalesforceObject(
@@ -90,6 +89,9 @@ IF RowCount(@subscriberRows) > 0 THEN
  ENDIF 
  */
 var @rows,@rowCount,@i,@row
+
+set @lang = "de_DE"
+
 set @rows = LookupRows("Translation_Page_Triumph","langg", @lang)
 
 var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID,@transDateOfBirth,@transUnsubscribeReason,@transHeader2,@transOption1,@transOption2,@transOption3,@transHeader3,@transOption10,@transOption10,@transHeader3,@transSubmit,@transThankyou,@transErrorMsg
