@@ -24,6 +24,9 @@ IF NOT EMPTY (@regId) THEN
 //LOOKUP - Synched DE Registrations und Pref Lang holen
 set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
 */
+set @lang = "de_DE"
+
+
 set @result=UpdateSingleSalesforceObject(
                                                    "Registration__c",@regid,
                                                    "NewsletterSubscriber__c",@newslettersubscriber,
