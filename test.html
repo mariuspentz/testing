@@ -18,8 +18,6 @@ set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
-
-
 /*
 IF NOT EMPTY (@regId) THEN         
 
@@ -87,6 +85,7 @@ IF RowCount(@subscriberRows) > 0 THEN
  /*       ENDIF
   ENDIF 
  ENDIF 
+ */
 var @rows,@rowCount,@i,@row
 set @rows = LookupRows("Translation_Page_Triumph","langg", @lang)
 
@@ -96,7 +95,7 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
    for @i = 1 to @rowCount do
    
    set @row = row(@rows, @i) /* get row based on counter */
- /*  set @transHeader1 = field(@row,"Header1")
+   set @transHeader1 = field(@row,"Header1")
    set @transEmail = field(@row,"Email")
    set @transHeader2 = field(@row,"Header2")
    set @transOption1 = field(@row,"Option1")
@@ -115,7 +114,7 @@ next @i
 endif 
 
 ]%%
-
+/*
 %%[if RequestParameter("debug") == "true" then]%%
 ContactID: %%=v(@ContactId)=%%<br>
 RegCountry: %%=v(@regCountry)=%%<br>
@@ -152,6 +151,6 @@ RegCountry: %%=v(@regCountry)=%%<br>
 
 %%=v(@newslettersubscriber)=%% <br>
 %%=v(@loyaltynewslettersubscriber)=%% <br>
-Hello World!
+
 </body>
 </html>
