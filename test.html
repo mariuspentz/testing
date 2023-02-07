@@ -21,8 +21,34 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-]%%
+SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
+IF RowCount(@subscriberRows) > 0 THEN
+ SET @row = row(@subscriberRows,1)
+ SET @FirstName = field(@row,"FirstName")
+ SET @Email = field(@row,"Email")
+ SET @country = field(@row,"Mailingcountry")
+ SET @AccountId=field(@row,"AccountId")
+
+ SET @regRows=RetrieveSalesforceObjects("Registration__c",
+                                     "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
+                                      "Account__c", "=", @AccountId,"RegistrationCountry__c","=",@regCountry,"Brand__c","=","Triumph")
+  
+  IF RowCount(@regRows) > 0 THEN
+  SET @regrow = row(@regRows,1)
+  SET @registrationId=field(@regrow,"Id")
+  SET @sfdcNewsletterSubscriber = field(@regrow,"NewsletterSubscriber__c")
+  SET @sfdcLoyaltyNewsletterSubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
+ 
+  SET @NewsletterSubscriptionDate = field(@regrow,"NewsletterSubscriptionDate__c") 
+  SET @NewsletterUnsubscribeDate = field(@regrow,"NewsletterUnsubscribeDate__c") 
+  SET @LoyaltyNewsletterSubscriptionDate = field(@regrow,"LoyaltyNewsletterSubscriptionDate__c") 
+  SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
+  
+  SET @lang=field(@regrow,"PreferredLanguage__c")
+  ENDIF
+  ENDIF
+]%%
 <script runat="server">
       } catch(e) { 
         
@@ -43,6 +69,10 @@ set @regCountry=RequestParameter("RegCountry")
 <body>
 
 %%=v(@ContactId)=%% <br>
-%%=v(@regCountry)=%%
+%%=v(@regCountry)=%% <br>
+%%=v(@FirstName)=%% <br>
+%%=v(@Email)=%% <br>
+%%=v(@country)=%% <br>
+%%=v(@AccountId)=%% <br>
 </body>
 </html>
