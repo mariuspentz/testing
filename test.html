@@ -15,27 +15,28 @@ set @LoyaltyNewsletterUnsubscribeDate=RequestParameter("LoyaltyNewsletterUnsubsc
 set @formatdate=DateAdd(Now(), 6, "H")
 set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 
-
-//IF NOT EMPTY (@regId) THEN         
-
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
 
-//LOOKUP - Synched DE Registrations und Pref Lang holen
-//set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
 
+
+/*
+IF NOT EMPTY (@regId) THEN         
+
+//LOOKUP - Synched DE Registrations und Pref Lang holen
+set @lang = LookUp("Registration__c_Salesforce_7","RegistrationCountry__c","Account__c",@
+*/
 set @result=UpdateSingleSalesforceObject(
                                                    "Registration__c",@regid,
                                                    "NewsletterSubscriber__c",@newslettersubscriber,
                                                    "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
-                                                   "NewsletterUnsubscribeDate__c",@todaydate
+                                                   "NewsletterUnsubscribeDate__c",@todaydate,
                                                    /*"LoyaltyNewsletterUnsubscribeDate",@todaydate */
                                                  )
-        //set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-        //set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+        set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+        set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
 
-  
-  ]%%
+        ]%%
  /*       ELSE
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
