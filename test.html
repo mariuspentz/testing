@@ -16,7 +16,7 @@ set @formatdate=DateAdd(Now(), 6, "H")
 set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 
 
-IF NOT EMPTY (@regId) THEN         
+//IF NOT EMPTY (@regId) THEN         
 
 set @newslettersubscriber = "false"
 set @loyaltynewslettersubscriber = "false"
@@ -35,7 +35,7 @@ set @result=UpdateSingleSalesforceObject(
         //set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
 
   
-     ENDIF   ]%%
+  ]%%
  /*       ELSE
 // IF REGID == EMPTY -> RETRIEVESFOBJECT
 set @ContactId=RequestParameter("Contact")
