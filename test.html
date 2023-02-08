@@ -21,6 +21,7 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
+
 IF EMPTY (@regId) THEN
 
 SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
@@ -50,7 +51,7 @@ IF RowCount(@subscriberRows) > 0 THEN
   SET @lang=field(@regrow,"PreferredLanguage__c")
 
   set @result=UpdateSingleSalesforceObject(
-  "Registration__c",@regid,
+  "Registration__c",@registrationId,
   "NewsletterSubscriber__c",@newslettersubscriber,
   "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
   "NewsletterUnsubscribeDate__c",@todaydate,
@@ -97,12 +98,12 @@ ENDIF
 </head>
 <body>
 
-%%=v(@ContactId)=%% <br>
-%%=v(@regCountry)=%% <br>
-%%=v(@FirstName)=%% <br>
-%%=v(@Email)=%% <br>
-%%=v(@country)=%% <br>
-%%=v(@AccountId)=%% <br>
-%%=v(@lang)=%% <br>
+contactId: %%=v(@ContactId)=%% <br>
+regCountry: %%=v(@regCountry)=%% <br>
+FirstName: %%=v(@FirstName)=%% <br>
+Email: %%=v(@Email)=%% <br>
+country: %%=v(@country)=%% <br>
+AccountId: %%=v(@AccountId)=%% <br>
+lang: %%=v(@lang)=%% <br>
 </body>
 </html>
