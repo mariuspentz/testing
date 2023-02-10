@@ -28,9 +28,8 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
       SET @Email = field(@row,"Email")
       SET @country = field(@row,"Mailingcountry")
       SET @AccountId=field(@row,"AccountId")
-    ENDIF 
-ENDIF]%% %%=v(@subscriberRows)=%% <br> %%=v(@FirstName)=%% <br> 
-      /*
+
+
       SET @regRows=RetrieveSalesforceObjects("Registration__c",
                                           "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
                                             "Account__c", "=", @AccountId,"RegistrationCountry__c","=",@regCountry,"Brand__c","=","Triumph")
@@ -47,7 +46,7 @@ ENDIF]%% %%=v(@subscriberRows)=%% <br> %%=v(@FirstName)=%% <br>
         SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
         
         SET @lang=field(@regrow,"PreferredLanguage__c")
-
+ ENDIF ENDIF ENDIF]%%  %%=v(@ecomSubscriber)=%% %%=v(@loyaltySubscriber)=%%/*
         IF @ecomSubscriber = 'true' THEN
   
           var @NLdoiDate,@NLdoiFlag
