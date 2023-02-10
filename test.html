@@ -39,14 +39,14 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
         SET @registrationId=field(@regrow,"Id")
         SET @ecomSubscriber = field(@regrow,"NewsletterSubscriber__c")
         SET @loyaltySubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
-      
+       /*
         SET @NewsletterSubscriptionDate = field(@regrow,"NewsletterSubscriptionDate__c") 
         SET @NewsletterUnsubscribeDate = field(@regrow,"NewsletterUnsubscribeDate__c") 
         SET @LoyaltyNewsletterSubscriptionDate = field(@regrow,"LoyaltyNewsletterSubscriptionDate__c") 
         SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
         
         SET @lang=field(@regrow,"PreferredLanguage__c")
- /*  
+  
         IF @ecomSubscriber = 'true' THEN
   
           var @NLdoiDate,@NLdoiFlag
