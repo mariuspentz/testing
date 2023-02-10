@@ -65,7 +65,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
 
         ENDIF
 
-          IF @loyaltySubscriber = 'true' THEN
+          IF @loyaltySubscriber != 'false' THEN
 
             var @LNLdoiDate,@LNLdoiFlag
             SET @LNLdoiDate="" 
