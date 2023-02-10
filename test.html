@@ -17,9 +17,9 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-
+/*
 IF EMPTY (@regid) /* AND NOT EMPTY (@subKey) */ THEN
-
+/*
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
     IF RowCount(@subscriberRows) > 0 THEN
@@ -135,7 +135,7 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
  if @rowCount > 0 then
     for @i = 1 to @rowCount do
     
-    set @row = row(@rows, @i) /* get row based on counter */
+    set @row = row(@rows, @i) 
     set @transHeader1 = field(@row,"Header1")
     set @transEmail = field(@row,"Email")
     set @transHeader2 = field(@row,"Header2")
@@ -164,7 +164,7 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
         Write(Stringify(e));
       }
 </script>
-
+*/
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,7 +174,7 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
   <title>Document</title>
 </head>
 <body style="margin-left: 30px;">
-
+<!--
 contactId: %%=v(@ContactId)=%% <br>
 regCountry: %%=v(@regCountry)=%% <br>
 FirstName: %%=v(@FirstName)=%% <br>
@@ -188,7 +188,7 @@ Content:<br>
 %%=v(@transEmail)=%% <br>
 %%=v(@transHeader2)=%% <br>
 %%=v(@transThankyou)=%% <br>
-%%=v(@transErrorMsg)=%% <br>
+%%=v(@transErrorMsg)=%% <br> -->
 %%=v(@unsubTrans)=%% <br>
 </body>
 </html>
