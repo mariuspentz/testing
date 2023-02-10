@@ -54,7 +54,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
           SET @NLdoiFlag = ""
           set @newslettersubscriber = "false"
           set @loyaltynewslettersubscriber = "false"
-  
+  /*
           set @result=UpdateSingleSalesforceObject(
             "Registration__c",@registrationId,
             "NewsletterSubscriber__c",@newslettersubscriber,
@@ -63,7 +63,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
             "NLDoubleOptIn__c",@NLdoiFlag   
           )
           set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-
+*/
         ENDIF
 
           IF @loyaltySubscriber = 'true' THEN
@@ -73,7 +73,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
             SET @LNLdoiFlag=""
             set @newslettersubscriber = "false"
             set @loyaltynewslettersubscriber = "false"
-    
+/*    
             set @result=UpdateSingleSalesforceObject(
               "Registration__c",@registrationId,
               "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
@@ -82,6 +82,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
               "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
             )
             set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
+*/
           ENDIF
       ENDIF 
       ENDIF 
