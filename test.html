@@ -18,7 +18,7 @@ set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
 
-IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
+IF EMPTY (@regid) AND NOT EMPTY (@subKey) THEN
 
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
@@ -113,10 +113,10 @@ ELSEIF NOT EMPTY (@subKey) THEN
         "Registration__c",@registrationId,
         "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
         "LoyaltyNewsletterUnsubscribeDate__c",@todaydate,
-        "LoyaltyNLDoubleOptInDate__c",@LNLdoiDate,
-        "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
+        "LoyaltyNLDoubleOptIn__c",@loyaltynewslettersubscriber
       )
-      set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
+      set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+      set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNLDoubleOptInDate__c')    
     ENDIF
 
 ELSE
@@ -129,7 +129,6 @@ ENDIF
 %%[
 //Pull multilanguage content
 var @rows,@rowCount,@i,@row
-
 
 set @regDE = "ENT.Registration__c_Salesforce_7"
 set @lang = Lookup(@regDE,"PreferredLanguage__c", "Id", @regid)
@@ -172,17 +171,4 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
         Write(Stringify(e));
       }
 </script>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body style="margin-left: 30px;">
-
-<br>
 <h1>%%=v(@unsubTrans)=%%</h1>
-</html>
