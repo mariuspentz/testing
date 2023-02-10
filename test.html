@@ -130,7 +130,9 @@ ENDIF
 //Pull multilanguage content
 var @rows,@rowCount,@i,@row
 
-set @lang = "de_de"
+//set @lang = "de_de"
+set @regDE = "Registration__c_Salesforce_7"
+set @lang = Lookup(@regDE,"PreferredLanguage__c", "Id", @regid)
 
 set @rows = LookupRows("Translation_Page_Triumph","Language", @lang)
 
