@@ -17,121 +17,6 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-
-IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
-
-  SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
-
-    IF RowCount(@subscriberRows) > 0 THEN
-      SET @row = row(@subscriberRows,1)
-      SET @FirstName = field(@row,"FirstName")
-      SET @Email = field(@row,"Email")
-      SET @country = field(@row,"Mailingcountry")
-      SET @AccountId=field(@row,"AccountId")
-
-
-      SET @regRows=RetrieveSalesforceObjects("Registration__c",
-                                          "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
-                                            "Account__c", "=", @AccountId,"RegistrationCountry__c","=",@regCountry,"Brand__c","=","Triumph")
-        
-      IF RowCount(@regRows) > 0 THEN
-        SET @regrow = row(@regRows,1)
-        SET @registrationId=field(@regrow,"Id")
-        SET @ecomSubscriber = field(@regrow,"NewsletterSubscriber__c")
-        SET @loyaltySubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
-      
-        SET @NewsletterSubscriptionDate = field(@regrow,"NewsletterSubscriptionDate__c") 
-        SET @NewsletterUnsubscribeDate = field(@regrow,"NewsletterUnsubscribeDate__c") 
-        SET @LoyaltyNewsletterSubscriptionDate = field(@regrow,"LoyaltyNewsletterSubscriptionDate__c") 
-        SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
-        
-        SET @lang=field(@regrow,"PreferredLanguage__c")
-
-        IF @ecomSubscriber = 'true' THEN
-  
-          var @NLdoiDate,@NLdoiFlag
-          SET @NLdoiDate = ""        
-          SET @NLdoiFlag = ""
-          set @newslettersubscriber = "false"
-          set @loyaltynewslettersubscriber = "false"
-  /*
-          set @result=UpdateSingleSalesforceObject(
-            "Registration__c",@registrationId,
-            "NewsletterSubscriber__c",@newslettersubscriber,
-            "NewsletterUnsubscribeDate__c",@todaydate,
-            "NLDoubleOptInDate__c",@NLdoiDate,
-            "NLDoubleOptIn__c",@NLdoiFlag   
-          )
-          set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-*/
-        ENDIF
-
-          IF @loyaltySubscriber = 'true' THEN
-
-            var @LNLdoiDate,@LNLdoiFlag
-            SET @LNLdoiDate="" 
-            SET @LNLdoiFlag=""
-            set @newslettersubscriber = "false"
-            set @loyaltynewslettersubscriber = "false"
-/*    
-            set @result=UpdateSingleSalesforceObject(
-              "Registration__c",@registrationId,
-              "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
-              "LoyaltyNewsletterUnsubscribeDate__c",@todaydate,
-              "LoyaltyNLDoubleOptInDate__c",@LNLdoiDate,
-              "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
-            )
-            set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
-*/
-          ENDIF
-      ENDIF 
-      ENDIF 
-      ENDIF
-      ]%%  /*
-      ENDIF
-    ENDIF
-ENDIF
-/* ELSEIF NOT EMPTY (@subKey) THEN
-
-  //LOOKUP auf Registration synched DE für subscriptions anhand Id
-  set @regDE = "Registration__c_Salesforce_7"
-
-  set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regid)
-  set @loyaltySubscriber = Lookup(@regDE,"LoyaltyNewsletterSubscriber__c", "Id", @regid)
-
-  var @LNLdoiDate,@LNLdoiFlag
-  SET @LNLdoiDate="" 
-  SET @LNLdoiFlag=""
-
-    IF @ecomSubscriber = 'true' THEN
-      set @result=UpdateSingleSalesforceObject(
-      "Registration__c",@registrationId,
-      "NewsletterSubscriber__c",@newslettersubscriber,
-      "NewsletterUnsubscribeDate__c",@todaydate,
-      "NLDoubleOptInDate__c",@NLdoiDate,
-      "NLDoubleOptIn__c",@NLdoiFlag   
-      )
-      set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-    ENDIF
-
-    IF @loyaltySubscriber = 'true' THEN
-      set @result=UpdateSingleSalesforceObject(
-        "Registration__c",@registrationId,
-        "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
-        "LoyaltyNewsletterUnsubscribeDate__c",@todaydate,
-        "LoyaltyNLDoubleOptInDate__c",@LNLdoiDate,
-        "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
-      )
-      set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
-    ENDIF
-
-ELSE
-
-  SET @unsubTrans = "Error. Please contact customer service."
-  
-ENDIF
-]%%
-*/
 %%[
 var @rows,@rowCount,@i,@row
 
@@ -185,6 +70,8 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
 <body style="margin-left: 30px;">
 
 <br>
-
+Content:<br>
+Trans: %%=v(@unsubTrans)=%% <br>
+lang: %%=v(@lang)=%% <br>
 </body>
 </html>
