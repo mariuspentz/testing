@@ -40,6 +40,9 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
         SET @ecomSubscriber = field(@regrow,"NewsletterSubscriber__c")
         SET @loyaltySubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
       
+        set @newslettersubscriber = "false"
+        set @loyaltynewslettersubscriber = "false"
+
         SET @NewsletterSubscriptionDate = field(@regrow,"NewsletterSubscriptionDate__c") 
         SET @NewsletterUnsubscribeDate = field(@regrow,"NewsletterUnsubscribeDate__c") 
         SET @LoyaltyNewsletterSubscriptionDate = field(@regrow,"LoyaltyNewsletterSubscriptionDate__c") 
@@ -79,7 +82,10 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
             )
             set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
           ENDIF
-          ENDIF ENDIF ENDIF]%%  /*
+      ENDIF 
+      ENDIF 
+      ENDIF
+      ]%%  /*
       ENDIF
     ENDIF
 ENDIF
