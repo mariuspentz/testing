@@ -21,7 +21,7 @@ set @regCountry=RequestParameter("RegCountry")
 IF EMPTY (@regid) /* AND NOT EMPTY (@subKey) */ THEN
 
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
-
+ENDIF ]%% %%=v(@subscriberRows)=%% <br> /*
     IF RowCount(@subscriberRows) > 0 THEN
       SET @row = row(@subscriberRows,1)
       SET @FirstName = field(@row,"FirstName")
