@@ -21,14 +21,14 @@ set @regCountry=RequestParameter("RegCountry")
 IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
 
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
-/*
+
     IF RowCount(@subscriberRows) > 0 THEN
       SET @row = row(@subscriberRows,1)
       SET @FirstName = field(@row,"FirstName")
       SET @Email = field(@row,"Email")
       SET @country = field(@row,"Mailingcountry")
       SET @AccountId=field(@row,"AccountId")
-
+/*
 
       SET @regRows=RetrieveSalesforceObjects("Registration__c",
                                           "Id,NewsletterSubscriber__c,LoyaltyNewsletterSubscriber__c,PreferredLanguage__c,NewsletterSubscriptionDate__c,NewsletterUnsubscribeDate__c ,LoyaltyNewsletterSubscriptionDate__c,LoyaltyNewsletterUnsubscribeDate__c,LoyaltyEnrolmentChannel__c,NewsletterEnrolmentChannel__c,NLDoubleOptIn__c,LoyaltyNLDoubleOptIn__c",
@@ -81,8 +81,8 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
             set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
 
           ENDIF
-      ENDIF 
       ENDIF */
+      ENDIF 
       ENDIF
       ]%%  /*
       ENDIF
