@@ -87,7 +87,6 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey) THEN
 
 ELSEIF NOT EMPTY (@subKey) THEN
 
-  //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "ENT.Registration__c_Salesforce_7"
 
   set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regid)
@@ -108,7 +107,7 @@ ELSEIF NOT EMPTY (@subKey) THEN
       set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
     ENDIF
 
-    IF @loyaltySubscriber != 'false' THEN
+    IF @loyaltySubscriber = 'false' THEN
       set @result=UpdateSingleSalesforceObject(
         "Registration__c",@registrationId,
         "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
