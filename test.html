@@ -47,40 +47,32 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey) THEN
         
         SET @lang=field(@regrow,"PreferredLanguage__c")
       
-        IF @ecomSubscriber != 'false' THEN
-  
-          var @NLdoiDate,@NLdoiFlag
-          SET @NLdoiDate = ""        
-          SET @NLdoiFlag = ""
-
-
-          set @result=UpdateSingleSalesforceObject(
+        var @LNLdoiDate,@LNLdoiFlag
+        SET @LNLdoiDate="" 
+        SET @LNLdoiFlag=""
+      
+          IF @ecomSubscriber != 'false' THEN
+            set @result=UpdateSingleSalesforceObject(
             "Registration__c",@registrationId,
             "NewsletterSubscriber__c",@newslettersubscriber,
             "NewsletterUnsubscribeDate__c",@todaydate,
-            "NLDoubleOptInDate__c",@NLdoiDate,
             "NLDoubleOptIn__c",@NLdoiFlag   
-          )
-          set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
-
-        ENDIF
-
-          IF @loyaltySubscriber != 'false' THEN
-
-            var @LNLdoiDate,@LNLdoiFlag
-            SET @LNLdoiDate="" 
-            SET @LNLdoiFlag=""
-   
-            set @result=UpdateSingleSalesforceObject(
-              "Registration__c",@registrationId,
-              "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
-              "LoyaltyNewsletterUnsubscribeDate__c",@todaydate,
-              "LoyaltyNLDoubleOptInDate__c",@LNLdoiDate,
-              "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
             )
-            set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
-
+            set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+            set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NLDoubleOptInDate__c')
           ENDIF
+
+      
+          IF @loyaltySubscriber != 'false' THEN
+          set @result=UpdateSingleSalesforceObject(
+            "Registration__c",@registrationId,
+            "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
+            "LoyaltyNewsletterUnsubscribeDate__c",@todaydate,
+            "LoyaltyNLDoubleOptIn__c",@loyaltynewslettersubscriber
+          )
+          set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')
+          set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNLDoubleOptInDate__c')    
+        ENDIF
 
       ENDIF
     ENDIF
@@ -101,10 +93,10 @@ ELSEIF NOT EMPTY (@subKey) THEN
       "Registration__c",@registrationId,
       "NewsletterSubscriber__c",@newslettersubscriber,
       "NewsletterUnsubscribeDate__c",@todaydate,
-      "NLDoubleOptInDate__c",@NLdoiDate,
       "NLDoubleOptIn__c",@NLdoiFlag   
       )
       set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
+      set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NLDoubleOptInDate__c')
     ENDIF
 
     IF @loyaltySubscriber != 'false' THEN
