@@ -96,8 +96,8 @@ ELSEIF NOT EMPTY (@subKey) THEN
   var @LNLdoiDate,@LNLdoiFlag
   SET @LNLdoiDate="" 
   SET @LNLdoiFlag=""
-  ENDIF/*
-    IF @ecomSubscriber = 'true' THEN
+
+    IF @ecomSubscriber != 'false' THEN
       set @result=UpdateSingleSalesforceObject(
       "Registration__c",@registrationId,
       "NewsletterSubscriber__c",@newslettersubscriber,
@@ -107,7 +107,7 @@ ELSEIF NOT EMPTY (@subKey) THEN
       )
       set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
     ENDIF
-
+ENDIF/*
     IF @loyaltySubscriber = 'true' THEN
       set @result=UpdateSingleSalesforceObject(
         "Registration__c",@registrationId,
