@@ -107,8 +107,8 @@ ELSEIF NOT EMPTY (@subKey) THEN
       )
       set @nullresult1=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'NewsletterSubscriptionDate__c')
     ENDIF
-ENDIF/*
-    IF @loyaltySubscriber = 'true' THEN
+
+    IF @loyaltySubscriber != 'false' THEN
       set @result=UpdateSingleSalesforceObject(
         "Registration__c",@registrationId,
         "LoyaltyNewsletterSubscriber__c",@loyaltynewslettersubscriber,
@@ -118,7 +118,7 @@ ENDIF/*
       )
       set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
     ENDIF
-
+ENDIF/*
 ELSE
 
   SET @unsubTrans = "Error. Please contact customer service."
