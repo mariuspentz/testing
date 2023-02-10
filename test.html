@@ -46,7 +46,7 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
         SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
         
         SET @lang=field(@regrow,"PreferredLanguage__c")
- ENDIF ENDIF ENDIF]%%  %%=v(@ecomSubscriber)=%% %%=v(@loyaltySubscriber)=%%/*
+ ENDIF ENDIF ENDIF]%%  /*
         IF @ecomSubscriber = 'true' THEN
   
           var @NLdoiDate,@NLdoiFlag
@@ -179,6 +179,6 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
 <br>
 Content:<br>
 Trans: %%=v(@unsubTrans)=%% <br>
-SK: %%=v(@subKey)=%% <br>
+SK: %%=v(@subKey)=%% <br>%%=v(@ecomSubscriber)=%% %%=v(@loyaltySubscriber)=%%
 </body>
 </html>
