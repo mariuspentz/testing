@@ -84,9 +84,10 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
 
       ENDIF
     ENDIF
-
-ELSEIF NOT EMPTY (@subKey) THEN
+    ENDIF
 /*
+ELSEIF NOT EMPTY (@subKey) THEN
+
   //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "Registration__c_Salesforce_7"
 
