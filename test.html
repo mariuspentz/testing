@@ -17,8 +17,6 @@ set @loyaltynewslettersubscriber = "False"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-IF NOT EMPTY (@subKey) THEN
-
   set @regDE = "ENT.Registration__c_Salesforce_7"
 
   set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regid)
@@ -50,11 +48,6 @@ IF NOT EMPTY (@subKey) THEN
       set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNLDoubleOptInDate__c')    
     ENDIF
 
-ELSE
-
-  SET @unsubTrans = "Error. Please contact customer service."
-  
-ENDIF
 ]%%
 
 %%[
