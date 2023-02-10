@@ -6,7 +6,7 @@
 var @newslettersubscriber,@loyaltynewslettersubscriber,@directmail,@unsubscribefromall,@todaydate,@myNLSub,@myLoyaltyNLSub,@NLFinalUnsubReason,@LNLFinalUnsubReason,@NLotherReason,@LNLotherReason
 
 set @regid=RequestParameter("regId")
-set @subKey = _subscriberKey
+set @subKey = _subscriberkey
 
 set @formatdate=DateAdd(Now(), 6, "H")
 set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
@@ -93,6 +93,7 @@ ELSEIF NOT EMPTY (@subKey) THEN
   var @LNLdoiDate,@LNLdoiFlag
   SET @LNLdoiDate="" 
   SET @LNLdoiFlag=""
+
     IF @ecomSubscriber = 'true' THEN
       set @result=UpdateSingleSalesforceObject(
       "Registration__c",@registrationId,
