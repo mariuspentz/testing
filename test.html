@@ -131,7 +131,7 @@ ENDIF
 var @rows,@rowCount,@i,@row
 
 
-set @regDE = "Registration__c_Salesforce_7"
+set @regDE = "ENT.Registration__c_Salesforce_7"
 set @lang = Lookup(@regDE,"PreferredLanguage__c", "Id", @regid)
 IF EMPTY (@lang) THEN
 set @lang = "en_GB"
