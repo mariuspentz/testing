@@ -81,15 +81,12 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
             set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
 
           ENDIF
-      ENDIF 
-      ENDIF 
-      ENDIF
-      ]%%  /*
+
       ENDIF
     ENDIF
-ENDIF
-/* ELSEIF NOT EMPTY (@subKey) THEN
 
+ELSEIF NOT EMPTY (@subKey) THEN
+/*
   //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "Registration__c_Salesforce_7"
 
