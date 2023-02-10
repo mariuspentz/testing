@@ -5,7 +5,7 @@
 %%[
 var @newslettersubscriber,@loyaltynewslettersubscriber,@directmail,@unsubscribefromall,@todaydate,@myNLSub,@myLoyaltyNLSub,@NLFinalUnsubReason,@LNLFinalUnsubReason,@NLotherReason,@LNLotherReason
 
-set @regid=RequestParameter("regId")
+set @regid = RequestParameter("regId")
 set @subKey = _subscriberkey
 
 set @formatdate=DateAdd(Now(), 6, "H")
@@ -18,7 +18,7 @@ set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
 
-IF EMPTY (@regId) AND NOT EMPTY (@subKey) THEN
+IF EMPTY (@regid) /* AND NOT EMPTY (@subKey) */ THEN
 
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
@@ -36,8 +36,8 @@ IF EMPTY (@regId) AND NOT EMPTY (@subKey) THEN
       IF RowCount(@regRows) > 0 THEN
         SET @regrow = row(@regRows,1)
         SET @registrationId=field(@regrow,"Id")
-        SET @sfdcNewsletterSubscriber = field(@regrow,"NewsletterSubscriber__c")
-        SET @sfdcLoyaltyNewsletterSubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
+        SET @ecomSubscriber = field(@regrow,"NewsletterSubscriber__c")
+        SET @loyaltySubscriber = field(@regrow,"LoyaltyNewsletterSubscriber__c") 
       
         SET @NewsletterSubscriptionDate = field(@regrow,"NewsletterSubscriptionDate__c") 
         SET @NewsletterUnsubscribeDate = field(@regrow,"NewsletterUnsubscribeDate__c") 
@@ -87,8 +87,8 @@ ELSEIF NOT EMPTY (@subKey) THEN
   //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "Registration__c_Salesforce_7"
 
-  set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regId)
-  set @loyaltySubscriber = Lookup(@regDE,"LoyaltyNewsletterSubscriber__c", "Id", @regId)
+  set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regid)
+  set @loyaltySubscriber = Lookup(@regDE,"LoyaltyNewsletterSubscriber__c", "Id", @regid)
 
   var @LNLdoiDate,@LNLdoiFlag
   SET @LNLdoiDate="" 
