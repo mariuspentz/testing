@@ -46,14 +46,14 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
         SET @LoyaltyNewsletterUnsubscribeDate = field(@regrow,"LoyaltyNewsletterUnsubscribeDate__c")
         
         SET @lang=field(@regrow,"PreferredLanguage__c")
-    
+      /*
         IF @ecomSubscriber = 'true' THEN
   
           var @NLdoiDate,@NLdoiFlag
           SET @NLdoiDate = ""        
           SET @NLdoiFlag = ""
 
-  /*
+
           set @result=UpdateSingleSalesforceObject(
             "Registration__c",@registrationId,
             "NewsletterSubscriber__c",@newslettersubscriber,
@@ -79,8 +79,8 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
               "LoyaltyNLDoubleOptIn__c",@LNLdoiFlag
             )
             set @nullresult2=UpdateSingleSalesforceObject('Registration__c', @regid, 'fieldsToNull', 'LoyaltyNewsletterSubscriptionDate__c')  
-*/
-          ENDIF
+
+          ENDIF*/
       ENDIF 
       ENDIF 
       ENDIF
