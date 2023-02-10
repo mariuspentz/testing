@@ -5,8 +5,7 @@
 %%[
 var @newslettersubscriber,@loyaltynewslettersubscriber,@directmail,@unsubscribefromall,@todaydate,@myNLSub,@myLoyaltyNLSub,@NLFinalUnsubReason,@LNLFinalUnsubReason,@NLotherReason,@LNLotherReason
 
-//set @regid = RequestParameter("regId")
-set @regid = "a0S090000239FYqEAM"
+set @regid = RequestParameter("regId")
 set @subKey = _subscriberkey
 
 set @formatdate=DateAdd(Now(), 6, "H")
