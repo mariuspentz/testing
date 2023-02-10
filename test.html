@@ -17,9 +17,9 @@ set @loyaltynewslettersubscriber = "false"
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
 
-/*
+
 IF EMPTY (@regid) /* AND NOT EMPTY (@subKey) */ THEN
-/*
+
   SET @subscriberRows = RetrieveSalesforceObjects("Contact","Id,FirstName,Email,Mailingcountry,AccountId","Id", "=",@ContactId)
 
     IF RowCount(@subscriberRows) > 0 THEN
@@ -81,8 +81,8 @@ IF EMPTY (@regid) /* AND NOT EMPTY (@subKey) */ THEN
 
       ENDIF
     ENDIF
-
-ELSEIF NOT EMPTY (@subKey) THEN
+ENDIF
+/* ELSEIF NOT EMPTY (@subKey) THEN
 
   //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "Registration__c_Salesforce_7"
@@ -174,7 +174,7 @@ var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID
   <title>Document</title>
 </head>
 <body style="margin-left: 30px;">
-<!--
+
 contactId: %%=v(@ContactId)=%% <br>
 regCountry: %%=v(@regCountry)=%% <br>
 FirstName: %%=v(@FirstName)=%% <br>
@@ -182,13 +182,8 @@ Email: %%=v(@Email)=%% <br>
 country: %%=v(@country)=%% <br>
 AccountId: %%=v(@AccountId)=%% <br>
 lang: %%=v(@lang)=%% <br>
-
+<br>
 Content:<br>
-%%=v(@transHeader1)=%% <br>
-%%=v(@transEmail)=%% <br>
-%%=v(@transHeader2)=%% <br>
-%%=v(@transThankyou)=%% <br>
-%%=v(@transErrorMsg)=%% <br> -->
 %%=v(@unsubTrans)=%% <br>
 %%=v(@subKey)=%% <br>
 </body>
