@@ -136,7 +136,7 @@ set @lang = Lookup(@regDE,"PreferredLanguage__c", "Id", @regid)
 IF EMPTY (@lang) THEN
 set @lang = "en_EN"
 ENDIF
-set @rows = LookupRows("Translation_Page_Triumph","Language", @lang)
+set @rows = LookupRows("Translation_Page_Triumph","langg", @lang)
 
 var @transHeader1,@transName,@transEmail,@transPreferredLanguage,@transLoyaltyID,@transDateOfBirth,@transUnsubscribeReason,@transHeader2,@transOption1,@transOption2,@transOption3,@transHeader3,@transOption10,@transOption10,@transHeader3,@transSubmit,@transThankyou,@transErrorMsg
    set @rowCount = rowcount(@rows)
