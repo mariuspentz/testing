@@ -86,13 +86,13 @@ IF EMPTY (@regid) AND NOT EMPTY (@subKey)  THEN
     ENDIF
 
 ELSEIF NOT EMPTY (@subKey) THEN
-ENDIF/*
+
   //LOOKUP auf Registration synched DE für subscriptions anhand Id
   set @regDE = "Registration__c_Salesforce_7"
 
   set @ecomSubscriber = Lookup(@regDE,"NewsletterSubscriber__c", "Id", @regid)
   set @loyaltySubscriber = Lookup(@regDE,"LoyaltyNewsletterSubscriber__c", "Id", @regid)
-
+  ENDIF/*
   var @LNLdoiDate,@LNLdoiFlag
   SET @LNLdoiDate="" 
   SET @LNLdoiFlag=""
