@@ -11,8 +11,8 @@ set @subKey = _subscriberkey
 set @formatdate=DateAdd(Now(), 6, "H")
 set @todaydate=Replace(FormatDate(@formatdate,"yyyy-MM-ddT","hh:mm:ss"),' ','')
 
-set @newslettersubscriber = "false"
-set @loyaltynewslettersubscriber = "false"
+set @newslettersubscriber = "False"
+set @loyaltynewslettersubscriber = "False"
 
 set @ContactId=RequestParameter("Contact")
 set @regCountry=RequestParameter("RegCountry")
