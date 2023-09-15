@@ -18,3 +18,4 @@ console.log("can u see the var 'c' ?");
 console.log("do I print out window document??"); 
 console.log("end js-code ressource"); 
 </script>
+<html>123</html>
