@@ -1,7 +1,7 @@
 <script> /* Javascript Code Ressource URL 
 var URL = "https://mc2xsctbllc5pw-0ck06pnh5c6g8.pub.sfmc-content.com/falan01rhrt";
 */
-console.log("start js-code ressource"); 
+/*console.log("start js-code ressource"); 
 
 (function (/* root, doc */) {
 
@@ -16,6 +16,21 @@ console.log(c);
 console.log("can u see the var 'c' ?");
 }(window, document));
 console.log("do I print out window document??"); 
-console.log("end js-code ressource"); 
+console.log("end js-code ressource"); */
 </script>
-<html>123</html>
+<!-- <html>123</html -->
+
+import './App.css';
+import Header from './components/header/Header'; // Import the Header component
+import Footer from './components/footer/Footer'; // Import the Header component
+
+function App() {
+  return (
+    <div className="App">
+       <Header />header
+       <Footer />footer
+    </div>
+  );
+}
+
+export default App;
