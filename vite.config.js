@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: './test.tsx',
+      input: './test.html',
       output: {
         entryFileNames: 'bundle.js',
         assetFileNames: 'bundle.[ext]',
