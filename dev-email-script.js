@@ -20,5 +20,5 @@ try {
   responseJSON.error = String(e);
 }
 
-//Write(Stringify(responseJSON));
+Write(Stringify(responseJSON));
 </script>
