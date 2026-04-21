@@ -1,0 +1,26 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariuspentz/testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariuspentz/testing/issues"
+  },
+  "homepage": "https://github.com/mariuspentz/testing#readme",
+  "description": "",
+  "dependencies": {
+    "vite": "^8.0.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1"
+  }
+}
