@@ -82,7 +82,7 @@
     responseJSON.timestamp = timestamp;
 
    
-
+Write(Stringify(responseJSON));
     
 /* } catch (e) {
     responseJSON.statusCode = '401';
