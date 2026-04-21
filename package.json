@@ -18,6 +18,8 @@
   "homepage": "https://github.com/mariuspentz/testing#readme",
   "description": "",
   "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "vite": "^8.0.9"
   },
   "devDependencies": {
